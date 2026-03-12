@@ -6,7 +6,7 @@ import gsap from 'gsap';
 import { ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 
 function Collections() {
 
@@ -98,7 +98,7 @@ function Collections() {
                             href={"/bougies-emotions"}
                             className="category-card group relative aspect-square xl:aspect-auto xl:h-125 rounded-lg overflow-hidden shadow-xl"
                             >
-                                <Image src={"/images/produits/emotions2.webp"} fill alt='image Emotion & Plaisir' className="group-hover:scale-105 transition-transform duration-700 object-cover" />
+                                <Image src={"/images/landing/collection_emotion.webp"} fill alt='image Emotion & Plaisir' className="group-hover:scale-105 transition-transform duration-700 object-cover" />
                                 <div className="absolute inset-0 bg-[#2C2C2C]/20 group-hover:bg-[#2C2C2C]/10 transition-colors duration-500" />
                                 <div className="relative h-full flex flex-col items-center justify-center p-8 text-[#FDFBF7]">
                                 <h3 className="text-3xl font-light mb-4 tracking-wider">Bougies Emotions & Plaisirs</h3>
@@ -115,7 +115,7 @@ function Collections() {
                             href={"/bougies-rituel"}
                             className="category-card group relative aspect-square xl:aspect-auto xl:h-125 rounded-lg overflow-hidden shadow-xl"
                             >
-                                <Image src={"/images/produits/couverture3.webp"} fill alt='image Emotion & Plaisir' className="group-hover:scale-105 transition-transform duration-700" />
+                                <Image src={"/images/landing/collection_terre.webp"} fill alt='image Emotion & Plaisir' className="group-hover:scale-105 transition-transform duration-700" />
                             <div className="absolute inset-0 bg-[#2C2C2C]/20 group-hover:bg-[#2C2C2C]/10 transition-colors duration-500" />
                             <div className="relative h-full flex flex-col items-center justify-center p-8 text-[#FDFBF7]">
                                 <h3 className="text-3xl font-light mb-4 tracking-wider">Bougies Entre Terre & Ciel</h3>
