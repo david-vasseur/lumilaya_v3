@@ -7,14 +7,14 @@ import { useGSAP } from "@gsap/react"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowDown } from "lucide-react"
-import { useDeviceStore } from "@/lib/store/deviceStore"
+// import { useDeviceStore } from "@/lib/store/deviceStore"
 
 export const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null)
   const imageRef = useRef<HTMLDivElement>(null)
   const overlayRef = useRef<HTMLDivElement>(null)
 
-  const { isMobile } = useDeviceStore()
+  // const { isMobile } = useDeviceStore()
 
   useGSAP(() => {
     gsap.to(imageRef.current, {
@@ -61,7 +61,7 @@ export const Hero = () => {
     <section ref={heroRef} className="relative h-screen overflow-hidden">
       
       {/* IMAGE */}
-      <div ref={imageRef} className="absolute inset-0 z-0">
+      {/* <div ref={imageRef} className="absolute inset-0 z-0">
         {isMobile ? (
           <Image
             width={528}
@@ -79,7 +79,7 @@ export const Hero = () => {
             className="w-full h-full object-cover object-bottom-right"
           />
         )}
-      </div>
+      </div> */}
 
       {/* OVERLAY */}
       <div

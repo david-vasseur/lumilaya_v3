@@ -1,26 +1,26 @@
-"use client"
+// "use client"
 
-import { create } from "zustand";
-import React from "react";
+// import { create } from "zustand";
+// import React from "react";
 
-interface ModalState {
-    isOpen: boolean;
-    content: React.ReactNode | null;
-    openModal: (content: React.ReactNode) => void;
-    closeModal: () => void;
-}
+// interface ModalState {
+//     isOpen: boolean;
+//     content: React.ReactNode | null;
+//     openModal: (content: React.ReactNode) => void;
+//     closeModal: () => void;
+// }
 
-export const useModalStore = create<ModalState>((set) => ({
-    isOpen: false,
-    content: null,
-    openModal: (content) =>
-        set({
-        isOpen: true,
-        content,
-        }),
-    closeModal: () =>
-        set({
-        isOpen: false,
-        content: null,
-        }),
-}));
+// export const useModalStore = create<ModalState>((set) => ({
+//     isOpen: false,
+//     content: null,
+//     openModal: (content) =>
+//         set({
+//         isOpen: true,
+//         content,
+//         }),
+//     closeModal: () =>
+//         set({
+//         isOpen: false,
+//         content: null,
+//         }),
+// }));

@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Herr_Von_Muellerhoff } from "next/font/google";
 import "./globals.css";
 import React from "react";
 import ReactLenis from "lenis/react";
-import Modal from "@/components/features/Modal";
+// import Modal from "@/components/features/Modal";
 import Navigation from "@/components/features/Navigation";
 import { Toaster } from "sonner";
 import Footer from "@/components/features/Footer";
@@ -146,7 +146,7 @@ export default function RootLayout({
 						<Toaster position="top-center" richColors />
 					</main>
 					<Footer />
-					<Modal />
+					{/* <Modal /> */}
 				</body>
 			</ReactLenis>
 		</html>
