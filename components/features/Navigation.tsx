@@ -3,21 +3,21 @@
 import { MenuIcon, ShoppingCart, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-// import { useModalStore } from "@/lib/store/modalStore";
+import { useModalStore } from "@/lib/store/modalStore";
 import Image from "next/image";
-import { useState, useRef, useEffect, useLayoutEffect } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
-// import { useCartStore } from "@/lib/store/cartStore";
-// import { useDeviceStore } from "@/lib/store/deviceStore";
+import { useCartStore } from "@/lib/store/cartStore";
+import { useDeviceStore } from "@/lib/store/deviceStore";
 import Cart from "./Cart";
 import { useGSAP } from "@gsap/react";
 
 function Navigation() {
 
     const path = usePathname();
-    // const { openModal } = useModalStore();
-    // const { items } = useCartStore();
-    // const { isMobile } = useDeviceStore();
+    const openModal = useModalStore((state) => state.openModal);
+    const items = useCartStore((state) => state.items);
+    const isMobile = useDeviceStore((state) => state.isMobile);
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -63,8 +63,7 @@ useLayoutEffect(() => {
 
     return (
         <nav className={`fixed top-0 left-0 right-0 z-50`}>
-            
-            {/* {isMobile ? (
+            {isMobile ? (
                 <>
                     <div className="absolute w-screen h-[8vh] bg-[#7A9B8E] flex justify-between items-center px-5 z-50">
 
@@ -97,7 +96,7 @@ useLayoutEffect(() => {
                     </div>
 
                     {/* overlay */}
-                    {/* <div
+                    <div
                         ref={overlayRef}
                         className={`fixed h-screen w-screen top-0 z-20 flex overflow-hidden pointer-events-none ${isMenuOpen ? "pointer-events-auto" : ""}`}
                     >
@@ -108,10 +107,10 @@ useLayoutEffect(() => {
                                 className="flex-1 bg-zinc-300 opacity-0"
                             />
                         ))}
-                    </div> */}
+                    </div> 
 
                     {/* menu */}
-                    {/* <div className="w-full pl-10 pt-15">
+                    <div className="w-full pl-10 pt-15">
                         <ul
                             ref={menuRef}
                             className="relative z-30 space-y-6 text-3xl mt-20 font-bold text-[#7A9B8E]"
@@ -136,8 +135,8 @@ useLayoutEffect(() => {
                             ))}
                         </ul>
                     </div>
-                </> */}
-            {/* ) : (  */}
+                </> 
+             ) : (  
 
                 /* DESKTOP */
 
@@ -176,16 +175,16 @@ useLayoutEffect(() => {
 
                     </div>
 
-                    {/* <div className="flex gap-2 cursor-pointer">
+                     <div className="flex gap-2 cursor-pointer">
                         <ShoppingCart
                             className="w-6 h-6 text-[#7A9B8E]"
-                            // onClick={() => openModal(<Cart />)}
+                            onClick={() => openModal(<Cart />)}
                         />
                         <span className="text-[#7A9B8E] font-bold">{items.length}</span>
-                    </div> */}
+                    </div> 
 
                 </div>
-            {/* )} */}
+            )} 
         </nav>
     );
 }
