@@ -27,10 +27,10 @@ const Template = ({ children }: { children: React.ReactNode }) => {
     }, [setIsMobile]);
 
     return (
-        <div>            
+        <>            
             {children}
             <Footer />
-        </div>
+        </>
     )
 }
 

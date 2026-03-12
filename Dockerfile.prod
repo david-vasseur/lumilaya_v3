@@ -27,14 +27,14 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 # Installer les dépendances système nécessaires pour Prisma et TLS
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        bash \
-        openssl \
-        libc6 \
-        ca-certificates \
-        curl \
-    && rm -rf /var/lib/apt/lists/*
+# RUN apt-get update && \
+#     apt-get install -y --no-install-recommends \
+#         bash \
+#         openssl \
+#         libc6 \
+#         ca-certificates \
+#         curl \
+#     && rm -rf /var/lib/apt/lists/*
 
 # Copier node_modules et le code depuis le builder
 COPY --from=builder /app/ ./
