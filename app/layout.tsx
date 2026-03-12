@@ -6,6 +6,7 @@ import ReactLenis from "lenis/react";
 import Modal from "@/components/features/Modal";
 import Navigation from "@/components/features/Navigation";
 import { Toaster } from "sonner";
+import Footer from "@/components/features/Footer";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -144,6 +145,7 @@ export default function RootLayout({
 						{children}
 						<Toaster position="top-center" richColors />
 					</main>
+					<Footer />
 					<Modal />
 				</body>
 			</ReactLenis>
