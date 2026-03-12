@@ -17,101 +17,33 @@ export const Hero = () => {
 	const { isMobile } = useDeviceStore();
 	
 
-	useGSAP(() => {
-		const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-		
-		if (!contentRef.current) return;
+    useGSAP(() => {
 
-		// Animation d'entrée
-		tl.from(imageRef.current, {
-			scale: 1.1,
-			duration: 1.2,
-			ease: 'power3.out',
-		})
-		.from('.hero-title-line', {
-			y: 120,
-			opacity: 0,
-			duration: 1.2,
-			stagger: 0.15,
-		}, '-=0.4')
-		.from('.hero-subtitle', {
-			y: 40,
-			opacity: 0,
-			stagger: 0.5,
-			duration: 1,
-			overwrite: "auto"
-		}, '-=0.8')
-		.from(ctaRefs.current, {
-			y: 40,
-			opacity: 0,
-			duration: 0.8,
-			stagger: 0.15,
-			ease: 'back.out(1.7)',
-			overwrite: 'auto'
-		}, '-=0.6')
-		.from('.hero-confiance', {
-			y: 40,
-			opacity: 0,
-			stagger: 0.5,
-			duration: 1,
-			overwrite: "auto"
-		}, '-=0.8')
-		.from('.scroll-indicator', {
-			y: -20,
-			opacity: 0,
-			duration: 0.8,
-		}, '-=0.4');
-
-		gsap.set(imageRef.current, { scale: 1 })
-		// Animation de sortie au scroll
-		gsap.to(imageRef.current, {
-			scale: 1.2,
-			opacity: 0.3,
-			scrollTrigger: {
-				trigger: contentRef.current,
-				start: 'top top',
-				end: 'bottom top',
-				scrub: 1.5,
-			}
-		});
-
-
-		gsap.to(overlayRef.current, {
-			opacity: 0.8,
-			scrollTrigger: {
-				trigger: heroRef.current,
-				start: 'top top',
-				end: 'bottom top',
-				scrub: 1.5,
-			}
-		});
-
-		gsap.to(contentRef.current, {
+        //effet de sortie en scroll
+        gsap.to(contentRef.current, {
 			opacity: 0,
 			scrollTrigger: {
 				trigger: heroRef.current,
-				start: 'top top',
-				end: '50% top',
-				scrub: 1,
+				start: 'bottom 90%',
+				end: 'bottom 50%',
+				scrub: .5,
 			}
 		});
-
-	}, { scope: heroRef });
+    }, { scope: heroRef })
 
 	return (
 		<section ref={heroRef} className="relative h-screen overflow-hidden">
 			{/* Image de fond avec Next.js Image */}
-			<div ref={imageRef} className="absolute inset-0">
+			<div ref={imageRef} className="absolute inset-0 z-1">
 				{isMobile ? (
-					<Image src={"/images/landing/hero_mobile.webp"} fill alt='' className="object-cover" />
+					<Image width={528} height={939} src={"/images/landing/hero_mobile.webp"}  alt="Himalaya avec bougie naturelle" className="w-full h-full object-cover" />
 				) : (
 					<Image 
+                        width={939} 
+                        height={704}
 						src="/images/landing/hero.webp"
 						alt="Himalaya avec bougie naturelle"
-						fill
-						priority
-						quality={100}
-						className="object-cover object-bottom-right"
+						className="w-full h-full object-cover object-bottom-right"
 					/>
 				)}							
 			</div>
@@ -119,10 +51,10 @@ export const Hero = () => {
 			{/* Overlay gradient pour améliorer la lisibilité */}
 			<div 
 				ref={overlayRef}
-				className="absolute inset-0 bg-linear-to-br from-[#2C2C2C]/60 via-[#2C2C2C]/40 to-transparent"
+				className="absolute inset-0 pointer-events-none bg-linear-to-br from-[#2C2C2C]/60 via-[#2C2C2C]/40 to-transparent z-2"
 			/>
 			{/* Contenu principal */}
-			<div ref={contentRef} className={`relative h-full flex items-start md:items-center justify-center z-10`}>
+			<div ref={contentRef} className="relative z-3 w-full h-full flex items-start md:items-center justify-center">
 				<div className="text-center px-6 max-w-5xl">
 
 					{/* Titre principal avec effet de découpe */}
