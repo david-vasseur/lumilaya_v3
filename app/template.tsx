@@ -9,7 +9,7 @@ import { useDeviceStore } from '@/lib/store/deviceStore';
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 
-function template({ children }: {children: React.ReactNode}) {
+function Template({ children }: {children: React.ReactNode}) {
 
     const { detectDevice } = useDeviceStore()
 
@@ -25,4 +25,4 @@ function template({ children }: {children: React.ReactNode}) {
     )
 }
 
-export default template;
+export default Template;
