@@ -1,5 +1,3 @@
-"use client"
-
 import BestProducts from "@/components/layout/landing/BestProducts";
 import Collections from "@/components/layout/landing/Collections";
 import { FAQ } from "@/components/layout/landing/Faq2";
