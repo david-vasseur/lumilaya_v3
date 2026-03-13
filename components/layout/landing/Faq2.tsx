@@ -85,10 +85,6 @@ export const FAQ = () => {
             ref={sectionRef}
             className="w-full bg-linear-to-b from-[#FDFBF7] to-[#F5F1EB] py-16 lg:py-24"
         >
-            <Script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
-            />
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16 faq-title">
                     <div className="inline-flex items-center gap-2 bg-[#7A9B8E]/10 px-4 py-2 rounded-full mb-4">
@@ -144,6 +140,10 @@ export const FAQ = () => {
                     </a>
                 </div>
             </div>
+            <Script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+            />
         </section>
     );
 };

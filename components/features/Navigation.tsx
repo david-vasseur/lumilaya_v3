@@ -39,7 +39,9 @@ function Navigation() {
     useGSAP(() => {
         if (!menuRef.current) return
 
-        tl.current = gsap.timeline({ paused: true })
+        tl.current = gsap.timeline({
+            paused: true,
+        })
 
         tl.current.fromTo(
             bandsRef.current,
@@ -81,7 +83,7 @@ function Navigation() {
         <nav ref={navRef} className={`fixed top-0 left-0 right-0 z-50`}>
             {isMobile ? (
                 <>
-                    <div className="absolute w-screen h-[8vh] bg-[#7A9B8E] flex justify-between items-center px-5 z-50">
+                    <div className={`absolute w-screen h-[8vh] bg-[#7A9B8E] flex justify-between items-center px-5 z-50`}>
 
                         <div className="flex gap-2 cursor-pointer">
                             <ShoppingCart
@@ -126,10 +128,10 @@ function Navigation() {
                     </div> 
 
                     {/* menu */}
-                    <div className="w-full pl-10 pt-15">
+                    <div className={`absolute w-full pl-10 pt-15 ${isMenuOpen ? "pointer-events-auto" : "pointer-events-none"}`}>
                         <ul
                             ref={menuRef}
-                            className="relative z-30 space-y-6 text-3xl mt-20 font-bold text-[#7A9B8E]"
+                            className={`relative z-30 space-y-6 text-3xl mt-20 font-bold text-[#7A9B8E]`}
                         >
                             {[
                                 { label: "Accueil", href: "/" },
