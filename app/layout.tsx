@@ -7,6 +7,11 @@ import Navigation from "@/components/features/Navigation";
 import { Toaster } from "sonner";
 import Footer from "@/components/features/Footer";
 import Modal from "@/components/features/Modal";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
