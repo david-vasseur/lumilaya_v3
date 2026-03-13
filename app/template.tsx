@@ -11,21 +11,12 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 
 function template({ children }: {children: React.ReactNode}) {
 
-    const setIsMobile = useDeviceStore((state) => state.setIsMobile)
+    const { detectDevice } = useDeviceStore()
 
     useEffect(() => {
-
-        const media = window.matchMedia("(max-width: 768px)");
-
-        const check = () => {
-        setIsMobile(media.matches);
-        };
-
-        media.addEventListener("change", check);
-        check();
-
-        return () => media.removeEventListener("change", check);
-    }, []);
+        const cleanup = detectDevice()
+        return cleanup
+    }, [detectDevice])
 
     return (
         <>
