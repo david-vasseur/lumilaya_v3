@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useModalStore } from "@/lib/store/modalStore";
 import Image from "next/image";
-import { useState, useRef, useLayoutEffect } from "react";
+import { useState, useRef, useLayoutEffect, useEffect, useMemo } from "react";
 import gsap from "gsap";
 import { useCartStore } from "@/lib/store/cartStore";
 import { useDeviceStore } from "@/lib/store/deviceStore";
@@ -18,51 +18,67 @@ function Navigation() {
     const openModal = useModalStore((state) => state.openModal);
     const items = useCartStore((state) => state.items);
     const isMobile = useDeviceStore((state) => state.isMobile);
+    const detectDevice = useDeviceStore((state) => state.detectDevice);
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    const navRef = useRef<HTMLDivElement | null>(null)
     const overlayRef = useRef<HTMLDivElement | null>(null);
     const menuRef = useRef<HTMLUListElement | null>(null);
     const bandsRef = useRef<(HTMLDivElement | null)[]>([]);
     const tl = useRef<gsap.core.Timeline | null>(null);
 
     const NUM_BANDS = 4;
-    const bands = Array.from({ length: NUM_BANDS });
+    const bands = useMemo(() => Array.from({ length: NUM_BANDS }), [])
 
-useLayoutEffect(() => {
-  // attendre que toutes les refs soient définies
-  if (!menuRef.current || bandsRef.current.some((b) => !b)) return;
+    useEffect(() => {
+        const cleanup = detectDevice()
+        return cleanup
+    }, [detectDevice])
 
-  const ctx = gsap.context(() => {
+    useGSAP(() => {
+        if (!menuRef.current) return
 
-    tl.current = gsap.timeline({ paused: true });
+        tl.current = gsap.timeline({ paused: true })
 
-    tl.current.fromTo(
-      bandsRef.current,
-      { x: "600%", opacity: 0 },
-      { x: "0%", opacity: 1,  duration: 0.6, ease: "power2.inOut", stagger: 0.05 }
-    );
+        tl.current.fromTo(
+            bandsRef.current,
+            { x: "600%", opacity: 0 },
+            {
+            x: "0%",
+            opacity: 1,
+            duration: 0.6,
+            ease: "power2.inOut",
+            stagger: 0.05
+            }
+        )
 
-    tl.current.fromTo(
-      menuRef.current!.children,
-      { y: 100, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.3, stagger: 0.1 },
-      "-=0.2"
-    );
-  });
-
-  return () => ctx.revert();
-}, [menuRef.current, ...bandsRef.current]); // déclenche seulement quand les refs sont toutes présentes
+        tl.current.fromTo(
+            menuRef.current.children,
+            { y: 100, opacity: 0 },
+            {
+            y: 0,
+            opacity: 1,
+            duration: 0.3,
+            stagger: 0.1
+            },
+            "-=0.2"
+        )
+    }, { scope: navRef })
 
     // Ouvrir / fermer menu
     useGSAP(() => {
-        if (!tl.current) return;
-        if (isMenuOpen) tl.current.play();
-        else tl.current.reverse();
-    }, [isMenuOpen]);
+        if (!tl.current) return
+
+        if (isMenuOpen) {
+            tl.current.play()
+        } else {
+            tl.current.reverse()
+        }
+    }, [isMenuOpen])
 
     return (
-        <nav className={`fixed top-0 left-0 right-0 z-50`}>
+        <nav ref={navRef} className={`fixed top-0 left-0 right-0 z-50`}>
             {isMobile ? (
                 <>
                     <div className="absolute w-screen h-[8vh] bg-[#7A9B8E] flex justify-between items-center px-5 z-50">

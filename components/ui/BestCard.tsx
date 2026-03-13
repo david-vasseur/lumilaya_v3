@@ -103,7 +103,7 @@ function BestCard({ products }: { products: IBestCard[] }) {
 			className="relative py-20 md:py-32 overflow-hidden"
 
 		>
-			<Image fill src={"/images/wave.svg"} alt="image de fond" className="object-cover -z-1" />
+			<Image fill src={"/images/landing/wave.svg"} alt="image de fond" className="object-cover -z-1" />
 		{/* ---------------- Header ---------------- */}
 		<div className="max-w-7xl mx-auto text-center mb-16 px-4">
 			{/* <h2 className="text-4xl md:text-5xl font-light text-[#2C2C2C] mb-4">

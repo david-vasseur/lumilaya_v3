@@ -19,7 +19,7 @@ export interface IVariants {
 }
 
 
-async function BestProducts() {
+function BestProducts() {
 
     const products: IBestCard[] = [
         {

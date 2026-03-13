@@ -11,13 +11,6 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 
 function Template({ children }: {children: React.ReactNode}) {
 
-    const { detectDevice } = useDeviceStore()
-
-    useEffect(() => {
-        const cleanup = detectDevice()
-        return cleanup
-    }, [detectDevice])
-
     return (
         <>
             {children}
